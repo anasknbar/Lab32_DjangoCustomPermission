@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-rc3caa!8(--z^dv1b3m5o=dm562g*ms@*de25rc4$-s0twkky!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
+
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -82,16 +84,32 @@ WSGI_APPLICATION = 'cars_store.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'fmivbrCbrKeRXxbiwvwWHUYGUvGColMI',
+#         'HOST': 'postgres.railway.internal',
+#         'PORT': '5432',
+#     }
+# }
+
+import os
+import dj_database_url
+
+# Fetch the DATABASE_URL environment variable
+DATABASE_URL = os.getenv('DATABASE_URL')
+#
+
+# Configure the default database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'QPSXlwQqVrnvyLpTQjPsuWfkolLgHZYY',
-        'HOST': 'postgres.railway.internal',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
+
+
+
+
 
 
 # Password validation
