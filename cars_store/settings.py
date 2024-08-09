@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rc3caa!8(--z^dv1b3m5o=dm562g*ms@*de25rc4$-s0twkky!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 
@@ -77,35 +77,15 @@ WSGI_APPLICATION = 'cars_store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'fmivbrCbrKeRXxbiwvwWHUYGUvGColMI',
-#         'HOST': 'postgres.railway.internal',
-#         'PORT': '5432',
-#     }
-# }
-
-import os
-import dj_database_url
-
-# Fetch the DATABASE_URL environment variable
-DATABASE_URL = os.getenv('DATABASE_URL')
-#
-
-# Configure the default database
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL)
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.parse("postgresql://cardb_vl57_user:c17m1fzcgaYUvCed7iPPSt0zPbcqTdd0@dpg-cqqsu4bv2p9s73bber8g-a.oregon-postgres.render.com/cardb_vl57")
 
 
 
